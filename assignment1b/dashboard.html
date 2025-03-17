@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2 id="welcomeMessage"></h2>
+    <button id="logoutButton">Logout</button>
+
+    <script>
+        const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+
+        if (!loggedInUser) {
+            alert("You are not logged in!");
+            window.location.href = "login.html"; // Redirect to login page
+        } else {
+            document.getElementById("welcomeMessage").textContent = `Welcome, ${loggedInUser.name}!`;
+        }
+
+        document.getElementById("logoutButton").addEventListener("click", function() {
+            localStorage.removeItem("loggedInUser"); // Remove user session
+            alert("Logged out successfully!");
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    </script>
+</body>
+</html>
